@@ -1,0 +1,27 @@
+package com.lambda.streamapi.functionalProgramming;
+
+public class LazinessFunctionalProgrammingExample {
+	public boolean isEven(int number) {
+	    return number % 2 == 0;
+	}
+
+	public int doubleIt(int number) {
+	    return number * 2;
+	}
+
+	public boolean isGreaterThan5(int number) {
+	    return number > 5;
+	}
+	
+	public void convolutedComplexSolution(List<Integer> numbers) {
+		for (int number : numbers) {
+		    if (number % 2 == 0) {
+		        int n2 = number * 2;
+		        if (n2 > 5) {
+		            System.out.println(n2);
+		            break;
+		        }
+		    }
+		}
+	}
+}

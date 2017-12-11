@@ -1,0 +1,27 @@
+package com.lambda.passbehaviour;
+
+import java.util.List;
+
+public class PassBehaviourExample {
+	public static void main(String[] args) {
+		
+	}
+	
+	public int sumAll(List<Integer> numbers) {
+	    int total = 0;
+	    for (int number : numbers) {
+	        total += number;
+	    }
+	    return total;
+	}
+	
+	public int sumAllEven(List<Integer> numbers) {
+	    int total = 0;
+	    for (int number : numbers) {
+	        if (number % 2 == 0) {
+	            total += number;
+	        }
+	    }
+	    return total;
+	}
+}

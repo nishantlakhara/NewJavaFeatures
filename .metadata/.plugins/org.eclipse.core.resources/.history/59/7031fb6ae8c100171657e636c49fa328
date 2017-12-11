@@ -1,0 +1,29 @@
+package com.lambda.patternusage;
+
+import java.util.function.Consumer;
+
+public class LoanPatternAvoidRepitition {
+	public static void main(String[] args) {
+		
+		//Normal usage - Repeat try finally wherever the operate method is called.
+		Resource resource = new Resource();
+		try {
+		    resource.operate();
+		} finally {
+		    resource.dispose();
+		}
+		
+		//Using lambda
+		withResource(resource -> resource.operate());
+	}
+	
+	public static void withResource(Consumer<Resource> consumer) {
+	    Resource resource = new Resource();
+	    try {
+	        consumer.accept(resource);
+	    } finally {
+	        resource.dispose();
+	    }
+	}
+	
+}

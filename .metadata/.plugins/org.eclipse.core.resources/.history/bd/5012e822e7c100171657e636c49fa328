@@ -1,0 +1,92 @@
+package com.lambda.streamapi.functionalProgramming;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LazinessFunctionalProgrammingExample {
+	public boolean isEven(int number) {
+	    return number % 2 == 0;
+	}
+
+	public int doubleIt(int number) {
+	    return number * 2;
+	}
+
+	public boolean isGreaterThan5(int number) {
+	    return number > 5;
+	}
+	
+	//Complex + efficient
+	public void convolutedComplexSolution(List<Integer> numbers) {
+		for (int number : numbers) {
+		    if (number % 2 == 0) {
+		        int n2 = number * 2;
+		        if (n2 > 5) {
+		            System.out.println(n2);
+		            break;
+		        }
+		    }
+		}
+	}
+	
+	//Easy + non efficient
+	/*
+		isEven: 1
+		isEven: 2
+		isEven: 3
+		isEven: 4
+		isEven: 5
+		isEven: 6
+		doubleIt: 2
+		doubleIt: 4
+		doubleIt: 6
+		isGreaterThan5: 4
+		isGreaterThan5: 8
+		isGreaterThan5: 12
+		8
+	 */
+	public void rewriteFormalCodePipelined(List<Integer> numbers) {
+		List<Integer> l1 = new ArrayList<Integer>();
+		for (int n : numbers) {
+		    if (isEven(n)) l1.add(n);
+		}
+
+		List<Integer> l2 = new ArrayList<Integer>();
+		for (int n : l1) {
+		    l2.add(doubleIt(n));
+		}
+
+		List<Integer> l3 = new ArrayList<Integer>();
+		for (int n : l2) {
+		    if (isGreaterThan5(n)) l3.add(n);
+		}
+
+		System.out.println(l3.get(0));
+	}
+	
+	//Easy + efficient
+	/*
+		isEven: 1
+		isEven: 2
+		doubleIt: 2
+		isGreaterThan5: 4
+		isEven: 3
+		isEven: 4
+		doubleIt: 4
+		isGreaterThan5: 8
+		IntOptional[8]
+	 */
+	public void rewriteFormalCodeUsingStreams(List<Integer> numbers) {
+		System.out.println(
+			    numbers.stream()
+			            .filter(LazinessFunctionalProgrammingExample::isEven)
+			            .map(LazinessFunctionalProgrammingExample::doubleIt)
+			            .filter(LazinessFunctionalProgrammingExample::isGreaterThan5)
+			            .findFirst()
+		);
+	}
+	
+	
+	
+	
+}

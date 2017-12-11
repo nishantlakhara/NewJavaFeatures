@@ -1,0 +1,5 @@
+package com.defaultfunction;
+
+public interface Interface2 {
+
+}

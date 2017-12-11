@@ -1,0 +1,54 @@
+package com.lambda.streamapi.functionalProgramming;
+
+import java.util.List;
+
+public class LazinessFunctionalProgrammingExample {
+	public boolean isEven(int number) {
+	    return number % 2 == 0;
+	}
+
+	public int doubleIt(int number) {
+	    return number * 2;
+	}
+
+	public boolean isGreaterThan5(int number) {
+	    return number > 5;
+	}
+	
+	//Complex + efficient
+	public void convolutedComplexSolution(List<Integer> numbers) {
+		for (int number : numbers) {
+		    if (number % 2 == 0) {
+		        int n2 = number * 2;
+		        if (n2 > 5) {
+		            System.out.println(n2);
+		            break;
+		        }
+		    }
+		}
+	}
+	
+	//Easy + non efficient
+	public void rewriteFormalCodePipelined(List<Integer> numbers) {
+		List<Integer> l1 = new ArrayList<Integer>();
+		for (int n : numbers) {
+		    if (isEven(n)) l1.add(n);
+		}
+
+		List<Integer> l2 = new ArrayList<Integer>();
+		for (int n : l1) {
+		    l2.add(doubleIt(n));
+		}
+
+		List<Integer> l3 = new ArrayList<Integer>();
+		for (int n : l2) {
+		    if (isGreaterThan5(n)) l3.add(n);
+		}
+
+		System.out.println(l3.get(0));
+	}
+	
+	
+	
+	
+}
